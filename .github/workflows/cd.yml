@@ -34,4 +34,6 @@ jobs:
         run: 'gcloud info'
 
       - name: Build and push Docker image
-        run: gcloud builds submit --tag REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG .
+        env:
+          IMAGE_NAME: learn-cicd-typescript-starter
+        run: gcloud builds submit --tag gcr.io/$GOOGLE_CLOUD_PROJECT/$IMAGE_NAME:${{ github.sha }} .
